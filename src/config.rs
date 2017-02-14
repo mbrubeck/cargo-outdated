@@ -11,7 +11,7 @@ pub struct Config<'tu> {
 
 impl<'tu> Config<'tu> {
     pub fn from_matches(m: &'tu ArgMatches) -> Self {
-        let depth = match m.value_of("DEPTH") {
+        let depth = match m.value_of("depth") {
             Some(d_str) => {
                 match d_str.parse::<u8>() {
                     Ok(num) => num as i32,
@@ -31,7 +31,7 @@ impl<'tu> Config<'tu> {
         };
 
         Config {
-            to_update: m.values_of("PKG").map(|v| v.collect()),
+            to_update: m.values_of("package").map(|v| v.collect()),
             depth: depth,
             verbose: m.is_present("verbose"),
         }
